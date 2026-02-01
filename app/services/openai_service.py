@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
+load_dotenv(override=True, dotenv_path=".env")
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 async def search_song(query: str):
