@@ -4,7 +4,7 @@ from fastapi.templating import Jinja2Templates
 from app.services.openai_service import search_song
 
 router = APIRouter()
-templates = Jinja2Templates(directory="./app/templates")
+templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/", response_class=HTMLResponse)
 def home(request: Request):

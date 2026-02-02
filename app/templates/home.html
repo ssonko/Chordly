@@ -1,5 +1,391 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Everything You Need to Master Any Song</h1>
-<p>AI-powered song discovery and chord conversion.</p>
+
+<!-- HERO -->
+<section class="bg-light py-5">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+
+        <div class="text-center text-md-start">
+            <h1 class="display-4 fw-bold">
+                Learn Any Song's
+                <span class="text-primary">Chords & Lyrics</span>
+                in Seconds
+            </h1>
+
+            <p class="lead text-muted mt-3">
+                Just type a song title or artist name.
+                Our AI instantly finds lyrics and chord progressions,
+                formatted to match your playing style.
+            </p>
+            
+            <div class="mt-4">
+                <a href="/search" class="btn btn-primary btn-lg me-2">
+                    Start Searching Songs →
+                </a>
+            </div>
+            
+            <div class="mt-4">
+                <a href="/features" class="btn btn-outline-primary btn-lg">
+                    See How It Works
+                </a>
+            </div>
+
+            <p class="text-muted small mt-3">
+                <i class="bi bi-check-circle"></i>
+                No credit card required • Instant access
+            </p>
+
+            <div class="feature-badges">
+                <div class="feature-item">
+                    <div class="feature-icon blue"></div>
+                    <span>AI-Powered Search</span>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon purple"></div>
+                    <span>Multiple Formats</span>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon red"></div>
+                    <span>Instant Results</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 mt-md-0 position-relative">
+            <img
+                src="{{ request.url_for('static', path='data/images/homepage_guitar.png') }}"
+                alt="Playing guitar"
+                class="img-fluid rounded shadow"
+            >
+
+            <div class="song-count-badge position-absolute">
+                <div class="song-icon">
+                    <i class="bi bi-music-note-beamed"></i>
+                </div>
+                <div class="song-text">
+                    <div class="song-number">10,000+</div>
+                    <div class="song-label">Songs Available</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works py-5 bg-white">
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-2">How It Works</h2>
+        <p class="text-muted mb-5">
+            <div class="step-icon"><i class="bi bi-music-note-beamed"></i></div>
+            Three simple steps to start playing your favorite songs
+        </p>
+
+        <div class="row align-items-center justify-content-center">
+
+            <div class="col-md-3 mb-4">
+                <div class="step-number">1</div>
+                <div class="step-icon"><i class="bi bi-search"></i></div>
+                <h5 class="fw-bold mt-3">Search Your Song</h5>
+                <p class="text-muted small">
+                    Type a song title, artist name, or a few lyrics.
+                </p>
+            </div>
+
+            <div class="col-md-1 d-none d-md-block">
+                <i class="bi bi-arrow-right step-arrow"></i>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="step-number">2</div>
+                <div class="step-icon"><i class="bi bi-sliders"></i></div>
+                <h5 class="fw-bold mt-3">Choose Your Format</h5>
+                <p class="text-muted small">
+                    Switch between chord names or number format.
+                </p>
+            </div>
+
+            <div class="col-md-1 d-none d-md-block">
+                <i class="bi bi-arrow-right step-arrow"></i>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="bi bi-music-note-beamed"></i>
+                </div>
+
+                <h5 class="fw-bold mt-3">Start Playing</h5>
+                <p class="text-muted small">
+                    Get perfectly formatted chords instantly.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+            <a href="/search" class="btn btn-primary btn-lg">
+                Try It Now – It's Free →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Features Built for Musicians</h2>
+            <p class="text-muted">
+                Everything you need to learn and play songs your way
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon bg-blue">
+                        <i class="bi bi-brain"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Smart AI Search</h5>
+                        <p class="text-muted mb-0">
+                            Understands partial titles, artists, and lyrics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon bg-red">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Multiple Format Options</h5>
+                        <p class="text-muted mb-0">
+                            Switch between chords and number formats.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon bg-purple">
+                        <i class="bi bi-layout-text-window"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Flexible Display Modes</h5>
+                        <p class="text-muted mb-0">
+                            Chords-only or chords with lyrics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon bg-pink">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">Instant Results</h5>
+                        <p class="text-muted mb-0">
+                            Accurate chords in seconds.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- PERFECT FOR EVERY SKILL LEVEL -->
+<section class="skill-level-section py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- LEFT IMAGE -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img
+                    src="{{ request.url_for('static', path='data/images/music_sheet.png') }}"
+                    alt="Music sheet"
+                    class="img-fluid rounded shadow"
+                >
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-md-6">
+
+                <h2 class="fw-bold mb-3">
+                    Perfect for Every Skill Level
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Whether you're just starting out or you're an experienced
+                    musician, Instant Chords adapts to your needs.
+                </p>
+
+                <!-- Beginner -->
+                <div class="d-flex align-items-start mb-3">
+                    <span class="skill-dot bg-blue"></span>
+                    <div>
+                        <h6 class="fw-bold mb-1">For Beginners</h6>
+                        <p class="text-muted mb-0">
+                            Learn songs faster with clear chord progressions and
+                            lyrics. No more confusion about which chord comes next.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Intermediate -->
+                <div class="d-flex align-items-start mb-3">
+                    <span class="skill-dot bg-red"></span>
+                    <div>
+                        <h6 class="fw-bold mb-1">For Intermediate Players</h6>
+                        <p class="text-muted mb-0">
+                            Expand your repertoire quickly. Switch between number
+                            and chord formats to understand the theory behind each song.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Advanced -->
+                <div class="d-flex align-items-start mb-4">
+                    <span class="skill-dot bg-purple"></span>
+                    <div>
+                        <h6 class="fw-bold mb-1">For Advanced Musicians</h6>
+                        <p class="text-muted mb-0">
+                            Transpose songs instantly, analyze chord progressions,
+                            and use number format for teaching or composition work.
+                        </p>
+                    </div>
+                </div>
+
+                    Start Learning Songs Now →
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta-section py-5">
+    <div class="container text-center">
+
+        <div class="cta-icon mb-3">
+            <i class="bi bi-music-note-beamed"></i>
+        </div>
+
+        <h2 class="fw-bold text-white mb-3">
+            Ready to Play Your Favorite Songs?
+        </h2>
+
+        <p class="text-white-50 mb-4">
+            Join thousands of musicians who are learning faster and playing better with
+            Instant Chords. Start searching for songs now—completely free.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+            <a href="/search" class="btn btn-light btn-lg">
+                Get Started Free →
+            </a>
+            <a href="/pricing" class="btn btn-outline-light btn-lg">
+                View Pricing
+            </a>
+        </div>
+
+        <div class="d-flex justify-content-center gap-4 text-white-50 small flex-wrap">
+            <div>
+                <i class="bi bi-check-circle me-1"></i>
+                No credit card required
+            </div>
+            <div>
+                <i class="bi bi-check-circle me-1"></i>
+                Instant access
+            </div>
+            <div>
+                <i class="bi bi-check-circle me-1"></i>
+                Cancel anytime
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer py-5">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- BRAND -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="d-flex align-items-center mb-3">
+                    <img
+                        src="{{ request.url_for('static', path='data/images/logo.png') }}"
+                        alt="Instant Chords logo"
+                        style="height:40px;"
+                        class="me-2"
+                    >
+                    <span class="fw-bold fs-5 text-white">Instant Chords</span>
+                </div>
+                <p class="footer-link">
+                    AI-powered song search with instant chord progressions and lyrics.
+                    Learn and play your favorite songs faster.
+                </p>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="footer-link">Home</a></li>
+                    <li><a href="/search" class="footer-link">Search</a></li>
+                    <li><a href="/features" class="footer-link">Features</a></li>
+                    <li><a href="/pricing" class="footer-link">Pricing</a></li>
+                </ul>
+            </div>
+
+            <!-- COMPANY -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Company</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="footer-link">About</a></li>
+                    <li><a href="/contact" class="footer-link">Contact</a></li>
+                    <li><a href="/faq" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- LEGAL -->
+            <div class="col-md-2">
+                <h6 class="text-white fw-bold mb-3">Legal</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider my-4">
+
+        <div class="text-center small" style="color:#556178;">
+            © 2026 Chordly. All rights reserved.
+        </div>
+
+
+
+    </div>
+</footer>
+
 {% endblock %}
