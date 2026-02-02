@@ -1,19 +1,136 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Search</h1>
-<input id="q" placeholder="Song, artist or lyrics">
-<button onclick="search()">Search</button>
-<pre id="result"></pre>
-<script>
-async function search(){
-  const q = document.getElementById('q').value;
-  const r = await fetch('/api/search', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({query:q})
-  });
-  const d = await r.json();
-  document.getElementById('result').innerText = d.result;
-}
-</script>
+
+<!-- SEARCH HERO -->
+<section class="search-hero py-5">
+    <div class="container text-center">
+
+        <h1 class="fw-bold mb-3">Find Your Song</h1>
+
+        <p class="text-muted mb-4">
+            Search by song title, artist name, or even a line from the lyrics.
+            Our AI will find exactly what you're looking for.
+        </p>
+
+        <!-- SEARCH CARD -->
+        <div class="search-card mx-auto">
+
+            <div class="search-input mb-3">
+                <i class="bi bi-search"></i>
+                <input
+                    type="text"
+                    placeholder="Enter song title, artist, or lyrics..."
+                    class="form-control"
+                >
+            </div>
+
+            <button class="btn btn-primary btn-lg w-100">
+                Search Songs →
+            </button>
+        </div>
+
+        <!-- TRY SEARCHING -->
+        <div class="try-search mt-4">
+            <div class="small text-muted mb-2">TRY SEARCHING FOR:</div>
+
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                <span class="search-pill">"Jingle Bells"</span>
+                <span class="search-pill">"Praise (Elevation Worship)"</span>
+                <span class="search-pill">"Country Road"</span>
+                <span class="search-pill">"Reckless Love"</span>
+            </div>
+        </div>
+
+        <!-- FEATURE ICONS -->
+        <div class="search-features mt-5">
+
+            <div class="search-feature">
+                <div class="feature-icon blue"></div>
+                <h6 class="fw-bold mt-3">Instant Results</h6>
+                <p class="small text-muted">
+                    Get chords and lyrics in seconds
+                </p>
+            </div>
+
+            <div class="search-feature">
+                <div class="feature-icon purple"></div>
+                <h6 class="fw-bold mt-3">Smart AI</h6>
+                <p class="small text-muted">
+                    Understands partial matches
+                </p>
+            </div>
+
+            <div class="search-feature">
+                <div class="feature-icon red"></div>
+                <h6 class="fw-bold mt-3">Huge Library</h6>
+                <p class="small text-muted">
+                    Thousands of songs available
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER (REUSED FROM HOME) -->
+<footer class="site-footer py-5">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="d-flex align-items-center mb-3">
+                    <img
+                        src="{{ request.url_for('static', path='data/images/logo.png') }}"
+                        alt="Chordly logo"
+                        style="height:40px;"
+                        class="me-2"
+                    >
+                    <span class="fw-bold fs-5 text-white">Chordly</span>
+                </div>
+                <p class="footer-link">
+                    AI-powered song search with instant chord progressions and lyrics.
+                    Learn and play your favorite songs faster.
+                </p>
+            </div>
+
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="footer-link">Home</a></li>
+                    <li><a href="/search" class="footer-link">Search</a></li>
+                    <li><a href="/features" class="footer-link">Features</a></li>
+                    <li><a href="/pricing" class="footer-link">Pricing</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Company</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="footer-link">About</a></li>
+                    <li><a href="/contact" class="footer-link">Contact</a></li>
+                    <li><a href="/faq" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h6 class="text-white fw-bold mb-3">Legal</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider my-4">
+
+        <div class="text-center small" style="color:#556178;">
+            © 2026 Chordly. All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
 {% endblock %}

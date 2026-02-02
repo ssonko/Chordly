@@ -26,6 +26,10 @@ def about(request: Request):
 def search_page(request: Request):
     return templates.TemplateResponse("search.html", {"request": request})
 
+@router.get("/song-details", response_class=HTMLResponse)
+def song_details(request: Request):
+    return templates.TemplateResponse("song-details.html", {"request": request})
+
 @router.post("/api/search")
 async def search_api(payload: dict):
     query = payload.get("query")
