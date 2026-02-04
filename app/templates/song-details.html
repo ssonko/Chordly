@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="py-4 song-details-page">
+    <div class="container">
+
+        <!-- BACK TO SEARCH -->
+        <a href="/search" class="text-decoration-none text-primary small mb-3 d-inline-block">
+            ← Back to Search
+        </a>
+
+        <!-- SONG HEADER -->
+        <div class="card shadow-sm p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+
+                <div>
+                    <h1 class="fw-bold mb-1">Song Title</h1>
+                    <div class="text-muted mb-2">Artist Name</div>
+
+                    <div class="d-flex gap-3 small text-muted">
+                        <span><i class="bi bi-music-note-beamed me-1"></i> Key: C Major</span>
+                        <span><i class="bi bi-clock me-1"></i> 4/4 Time</span>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-primary">
+                        <i class="bi bi-bookmark me-1"></i> Save Song
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i class="bi bi-share me-1"></i> Share
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="card shadow-sm p-3 mb-4">
+            <div class="row text-center gy-3">
+
+                <div class="col-md-3">
+                    <div class="fw-bold small mb-2">Chord Format</div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary active">Chords</button>
+                        <button class="btn btn-outline-primary">Numbers</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="fw-bold small mb-2">Display Mode</div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary active">With Lyrics</button>
+                        <button class="btn btn-outline-primary">Chords Only</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="fw-bold small mb-2">Transpose</div>
+                    <div class="d-flex justify-content-center align-items-center gap-2">
+                        <button class="btn btn-outline-secondary">−</button>
+                        <span class="fw-bold">0</span>
+                        <button class="btn btn-outline-secondary">+</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="fw-bold small mb-2">Font Size</div>
+                    <div class="d-flex justify-content-center align-items-center gap-2">
+                        <button class="btn btn-outline-secondary">−</button>
+                        <span class="fw-bold">100%</span>
+                        <button class="btn btn-outline-secondary">+</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SONG CONTENT -->
+        <div class="card shadow-sm p-4 song-content">
+            <pre class="song-text">
+
+<span class="section-label">[Verse 1]</span>
+
+<span class="chord">C</span> <span class="chord">G</span> <span class="chord">Am</span>
+Today is gonna be the day that they're gonna throw it back to you
+
+<span class="chord">C</span> <span class="chord">G</span> <span class="chord">Am</span>
+By now you should've somehow realized what you gotta do
+
+<span class="chord">C</span> <span class="chord">G</span> <span class="chord">F</span> <span class="chord">Fm</span>
+I don't believe that anybody feels the way I do about you now
+
+
+<span class="section-label">[Chorus]</span>
+
+<span class="chord">C</span> <span class="chord">Em</span> <span class="chord">G</span> <span class="chord">Em</span>
+And all the roads we have to walk are winding
+
+<span class="chord">C</span> <span class="chord">Em</span> <span class="chord">G</span> <span class="chord">Em</span>
+And all the lights that lead us there are blinding
+
+<span class="chord">C</span> <span class="chord">G</span> <span class="chord">Am</span>
+There are many things that I would like to say to you
+
+<span class="chord">F</span> <span class="chord">G</span> <span class="chord">C</span>
+But I don't know how
+            </pre>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer py-5">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="d-flex align-items-center mb-3">
+                    <img
+                        src="{{ request.url_for('static', path='data/images/logo.png') }}"
+                        alt="Instant Chords logo"
+                        style="height:40px;"
+                        class="me-2"
+                    >
+                    <span class="fw-bold fs-5 text-white">Instant Chords</span>
+                </div>
+                <p class="footer-link">
+                    AI-powered song search with instant chord progressions and lyrics.
+                    Learn and play your favorite songs faster.
+                </p>
+            </div>
+
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="footer-link">Home</a></li>
+                    <li><a href="/search" class="footer-link">Search</a></li>
+                    <li><a href="/song-details" class="footer-link">Song Details</a></li>
+                    <li><a href="/features" class="footer-link">Features</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-white fw-bold mb-3">Company</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="footer-link">About</a></li>
+                    <li><a href="/contact" class="footer-link">Contact</a></li>
+                    <li><a href="/faq" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <h6 class="text-white fw-bold mb-3">Legal</h6>
+                <ul class="list-unstyled">
+                    <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider my-4">
+
+        <div class="text-center small" style="color:#556178;">
+            © 2026 Instant Chords. All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
+{% endblock %}

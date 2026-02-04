@@ -73,7 +73,7 @@
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (REUSED FROM HOME) -->
 <footer class="site-footer py-5">
     <div class="container">
 
@@ -132,50 +132,5 @@
 
     </div>
 </footer>
-
-<!-- SEARCH SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const button = document.querySelector(".search-card .btn-primary");
-    const input = document.querySelector(".search-card input");
-
-    async function runSearch() {
-        const query = input.value.trim();
-        if (!query) return;
-
-        button.disabled = true;
-        button.innerText = "Searching...";
-
-        try {
-            const response = await fetch("/api/search", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ query })
-            });
-
-            const data = await response.json();
-
-            if (data.redirect) {
-                window.location.href = data.redirect;
-            } else {
-                alert("No song found. Try another search.");
-            }
-        } catch (error) {
-            alert("Something went wrong. Please try again.");
-        } finally {
-            button.disabled = false;
-            button.innerText = "Search Songs →";
-        }
-    }
-
-    button.addEventListener("click", runSearch);
-
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            runSearch();
-        }
-    });
-});
-</script>
 
 {% endblock %}
