@@ -15,18 +15,23 @@
         <!-- SEARCH CARD -->
         <div class="search-card mx-auto">
 
-            <div class="search-input mb-3">
-                <i class="bi bi-search"></i>
+            <div class="search-input mb-3 position-relative">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
                 <input
+                    id="searchInput"
                     type="text"
                     placeholder="Enter song title, artist, or lyrics..."
-                    class="form-control"
+                    class="form-control ps-5"
                 >
             </div>
 
-            <button class="btn btn-primary btn-lg w-100">
+            <button id="searchBtn" class="btn btn-primary btn-lg w-100">
                 Search Songs →
             </button>
+
+            <div id="loading" class="small text-muted mt-3 d-none">
+                Searching…
+            </div>
         </div>
 
         <!-- TRY SEARCHING -->
@@ -34,10 +39,10 @@
             <div class="small text-muted mb-2">TRY SEARCHING FOR:</div>
 
             <div class="d-flex justify-content-center gap-2 flex-wrap">
-                <span class="search-pill">"Jingle Bells"</span>
-                <span class="search-pill">"Praise (Elevation Worship)"</span>
-                <span class="search-pill">"Country Road"</span>
-                <span class="search-pill">"Reckless Love"</span>
+                <span class="search-pill" onclick="quickSearch('Jingle Bells')">"Jingle Bells"</span>
+                <span class="search-pill" onclick="quickSearch('Praise Elevation Worship')">"Praise (Elevation Worship)"</span>
+                <span class="search-pill" onclick="quickSearch('Country Road')">"Country Road"</span>
+                <span class="search-pill" onclick="quickSearch('Reckless Love')">"Reckless Love"</span>
             </div>
         </div>
 
@@ -48,7 +53,7 @@
                 <div class="feature-icon blue"></div>
                 <h6 class="fw-bold mt-3">Instant Results</h6>
                 <p class="small text-muted">
-                    Get chords and lyrics in seconds
+                    Get chords and song structure in seconds
                 </p>
             </div>
 
@@ -132,5 +137,40 @@
 
     </div>
 </footer>
+
+<!-- SEARCH SCRIPT -->
+<script>
+async function submitSearch(query) {
+    if (!query) return;
+
+    document.getElementById("loading").classList.remove("d-none");
+
+    const res = await fetch("/api/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query })
+    });
+
+    const data = await res.json();
+    if (data.redirect) {
+        window.location.href = data.redirect;
+    }
+}
+
+document.getElementById("searchBtn").addEventListener("click", () => {
+    submitSearch(document.getElementById("searchInput").value.trim());
+});
+
+document.getElementById("searchInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        submitSearch(e.target.value.trim());
+    }
+});
+
+function quickSearch(text) {
+    document.getElementById("searchInput").value = text;
+    submitSearch(text);
+}
+</script>
 
 {% endblock %}
