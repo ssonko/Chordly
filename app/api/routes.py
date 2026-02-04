@@ -75,23 +75,35 @@ def debug_session(request: Request):
         "session_data": request.session
     }
 
-def normalize_song(song):
+def normalize_song(song: dict) -> dict:
+    """
+    Guarantees:
+    - One chord line per lyric line
+    - No chord-only lines
+    - No empty lyrics
+    """
+
     for section in song.get("sections", []):
-        fixed_lines = []
-        buffer_chords = []
+        normalized_lines = []
+        chord_buffer = []
 
         for line in section.get("lines", []):
-            if isinstance(line, str):
-                # stray lyric
-                fixed_lines.append({
-                    "chords": buffer_chords,
-                    "lyrics": line
-                })
-                buffer_chords = []
-            elif "chords" in line and "lyrics" in line:
-                fixed_lines.append(line)
-            elif isinstance(line, list):
-                buffer_chords.extend(line)
+            chords = line.get("chords", [])
+            lyrics = (line.get("lyrics") or "").strip()
 
-        section["lines"] = fixed_lines
+            # Accumulate stray chord-only lines
+            if chords and not lyrics:
+                chord_buffer.extend(chords)
+                continue
+
+            # Valid lyric line → attach buffered chords
+            if lyrics:
+                normalized_lines.append({
+                    "chords": chord_buffer + chords,
+                    "lyrics": lyrics
+                })
+                chord_buffer = []
+
+        section["lines"] = normalized_lines
+
     return song

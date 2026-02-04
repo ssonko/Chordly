@@ -297,3 +297,115 @@ p, span {
   color: #4f7cff;
   font-weight: 700;
 }
+/* SONG DETAILS PAGE */
+
+.song-text {
+    font-family: "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Section labels like [Verse 1] */
+.section-label {
+    display: block;
+    color: #2563eb; /* blue */
+    font-weight: 600;
+    margin: 1.4rem 0 0.6rem;
+}
+
+/* Chord row */
+.chord-line {
+    display: block;
+    color: #2563eb; /* blue chords */
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+/* Lyric row */
+.lyric-line {
+    display: block;
+    color: #0f172a; /* dark slate */
+    margin-bottom: 0.9rem;
+}
+
+/* Remove extra pre padding */
+.song-content pre {
+    margin: 0;
+}
+/* SONG HEADER META (icons under title) */
+
+.song-meta {
+    font-size: 0.9rem;
+    color: #64748b; /* muted slate */
+}
+
+.song-meta .meta-icon {
+    font-size: 1rem;
+    color: #2563eb; /* same blue as chords */
+    line-height: 1;
+}
+/* SONG CONTENT SPACING FIX */
+
+.song-text {
+    font-family: "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.35; /* tighter */
+    white-space: pre-wrap;
+}
+
+/* Section headers */
+.section-label {
+    display: block;
+    color: #2563eb;
+    font-weight: 600;
+    margin: 1rem 0 0.4rem;
+}
+
+/* Chord row */
+.chord-line {
+    display: block;
+    color: #2563eb;
+    font-weight: 600;
+    margin: 0;              /* 🚨 remove spacing */
+    padding: 0;
+}
+
+/* Lyric row */
+.lyric-line {
+    display: block;
+    color: #0f172a;
+    margin: 0 0 0.6rem 0;   /* small gap AFTER lyrics */
+    padding: 0;
+}
+.song-text {
+    font-family: "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    white-space: pre-wrap;
+}
+
+/* Section headers */
+.section-label {
+    display: block;
+    color: #2563eb;
+    font-weight: 600;
+    margin: 1rem 0 0.4rem;
+}
+
+/* Chords */
+.chord-line {
+    display: block;
+    color: #2563eb;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+/* Lyrics */
+.lyric-line {
+    display: block;
+    color: #0f172a;
+    margin: 0 0 0.6rem 0; /* space AFTER lyrics only */
+    padding: 0;
+}

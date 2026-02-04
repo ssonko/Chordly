@@ -3,7 +3,6 @@ import json
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
-# Load .env from project root
 load_dotenv(
     dotenv_path=os.path.abspath(
         os.path.join(os.path.dirname(__file__), "../../.env")
@@ -12,43 +11,49 @@ load_dotenv(
 )
 
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-MODEL = os.getenv("OPENAI_MODEL", "gpt-5-nano")
+MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 
 
 async def search_song(query: str) -> dict:
-    """
-    Returns structured song data safe for rendering.
-    NO hard-coded values.
-    NO copyrighted lyrics beyond short excerpts.
-    """
-
     prompt = f"""
-You are a music assistant.
+You are a music transcription assistant.
 
-Return ONLY valid JSON.
-Do NOT include markdown.
-Do NOT include explanations.
+CRITICAL FORMAT RULES (DO NOT BREAK):
+- NEVER return chord-only lines.
+- Each lyric line MUST contain all its chords in ONE array.
+- One lyric line = one chords array.
+- DO NOT split chords across multiple lines.
+- DO NOT return empty lyrics.
 
-Task:
-- Identify the requested song
-- Provide guitar chords aligned above lyric placeholders
-- Do NOT return full copyrighted lyrics
-- Use short lyric fragments or placeholders
-
-JSON FORMAT (must match exactly):
-
+GOOD EXAMPLE:
 {{
-  "title": "Song Title",
-  "artist": "Artist Name",
-  "key": "C Major",
-  "time_signature": "4/4",
+  "chords": ["G", "G7", "C", "G"],
+  "lyrics": "Amazing Grace, how sweet the sound"
+}}
+
+BAD EXAMPLE (FORBIDDEN):
+{{ "chords": ["G"], "lyrics": "" }}
+
+LEGAL RULES:
+- If the song is PUBLIC DOMAIN, return FULL lyrics.
+- If COPYRIGHTED, return lyric placeholders.
+- Always return chords.
+- Preserve sections exactly (Verse, Chorus, Refrain).
+
+RETURN ONLY VALID JSON. NO MARKDOWN. NO TEXT.
+
+JSON SCHEMA:
+{{
+  "title": "Song title",
+  "artist": "Artist or composer",
+  "public_domain": true,
   "sections": [
     {{
       "name": "Verse 1",
       "lines": [
         {{
-          "chords": ["C", "G", "Am"],
-          "lyrics": "(lyrics omitted)"
+          "chords": ["G", "G7", "C", "G"],
+          "lyrics": "Amazing Grace, how sweet the sound"
         }}
       ]
     }}
@@ -63,18 +68,14 @@ Song request: "{query}"
         input=prompt
     )
 
-    raw_text = response.output_text.strip()
+    raw = response.output_text.strip()
 
     try:
-        song_data = json.loads(raw_text)
-    except json.JSONDecodeError:
-        # Hard fallback so UI never crashes
-        song_data = {
+        return json.loads(raw)
+    except Exception:
+        return {
             "title": query,
-            "artist": "Unknown Artist",
-            "key": "Unknown",
-            "time_signature": "Unknown",
+            "artist": "Unknown",
+            "public_domain": False,
             "sections": []
         }
-
-    return song_data
