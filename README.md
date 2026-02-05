@@ -211,3 +211,7 @@ This specification is intended to:
 - Be implemented directly in code (Python, JavaScript, etc.)
 - Be used as a prompt or reference for LLM-based code generation
 - Serve as a foundation for advanced harmonic analysis systems
+
+##Legal Approach
+Use Licensed API for lyrics
+Use AI for Chord Generation
