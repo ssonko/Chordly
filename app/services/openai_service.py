@@ -34,13 +34,9 @@ GOOD EXAMPLE:
 BAD EXAMPLE (FORBIDDEN):
 {{ "chords": ["G"], "lyrics": "" }}
 
-LEGAL RULES:
-- If the song is PUBLIC DOMAIN, return FULL lyrics.
-- If COPYRIGHTED, return lyric placeholders.
-- Always return chords.
-- Preserve sections exactly (Verse, Chorus, Refrain).
-
 RETURN ONLY VALID JSON. NO MARKDOWN. NO TEXT.
+
+Return all the verses, choruses and the full song with all the parts
 
 JSON SCHEMA:
 {{
@@ -49,7 +45,7 @@ JSON SCHEMA:
   "public_domain": true,
   "sections": [
     {{
-      "name": "Verse 1",
+      "name": "Verse 1", "Verse 2", "Chorus", etc.,
       "lines": [
         {{
           "chords": ["G", "G7", "C", "G"],
