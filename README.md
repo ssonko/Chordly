@@ -1,6 +1,6 @@
 # Universal Chord → Number System Conversion
 
-This project defines a system for converting any musical chord notation into number-based notation (Nashville Number System) relative to a given key, while preserving harmonic meaning, chord quality, extensions, alterations, inversions, and bass notes.
+This project defines a system that takes a user input as a string in form o fa song title, part of the lyrics or song writer's name, uses AI to identify the song lyrics, finds the musical chord notation and converts it into number-based notation (Nashville Number System) relative to a given key, while preserving harmonic meaning, chord quality, extensions, alterations, inversions, and bass notes.
 
 The system must work for all chord types, not only slash chords.
 
@@ -9,6 +9,8 @@ The system must work for all chord types, not only slash chords.
 ## Problem Summary
 
 Create a conversion engine that:
+- Accepts unstructured user song search
+- Finds the song lyrics and meta data
 - Accepts standard chord notation (e.g. `G7♭9/B`)
 - Converts chord roots and bass notes into scale-degree numbers
 - Preserves all chord qualities, extensions, and alterations verbatim
